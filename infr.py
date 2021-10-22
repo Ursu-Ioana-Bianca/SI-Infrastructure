@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import manager
 from client1 import Client1
 from client2 import Client2
@@ -13,11 +13,11 @@ import random
 def checkCon(c1, c2, m):
   conv=0
   if conv == 0:   
-    names = raw_input("Enter two participants to communicate: ")
+    names = input("Enter two participants to communicate: ")
     delim = " "
     partners = names.split(delim)
     while len(partners)!=2:
-       names = raw_input("Enter two participants to communicate: ")
+       names = input("Enter two participants to communicate: ")
        delim = " "
        partners = names.split(delim)
 
@@ -43,18 +43,18 @@ def checkCon(c1, c2, m):
 def conv1(c1, m): #ce trimite A catre KeyManager
     ok=False
     while(ok==False):
-      request = raw_input("Enter your request: ")
+      request = input("Enter your request: ")
       if request == "give the key" or request == "key":
           ok=True
           key = m.encryptKey()
           c1.encrypt_key=key
-          # checkCon(c, n2, m)
+          
 
 
 
 def conv2(c1, c2):  #ce trimite A catre B 
   if c1.mod == " ":
-     mod = raw_input(" {} :Choose between ECB or CBC: ".format(c1.name))
+     mod = input(" {} :Choose between ECB or CBC: ".format(c1.name))
 
      if mod=="ECB":
          c1.mod=mod
@@ -85,7 +85,7 @@ def conv3(c2, c1):  # ce trimite B catre A
   if c2.is_ready == False:
     ok=False 
     while ok == False:
-      start = raw_input("{} if you want to start to commnuicate with {} write start : ".format(c2.name, c1.name))
+      start = input("{} if you want to start to commnuicate with {} write start : ".format(c2.name, c1.name))
       if start == "start":
         ok=True
         c2.is_ready = True
@@ -105,14 +105,14 @@ if __name__ == "__main__":
   key2 = bytearray(urandom(block_size))
   # print(key2)
   iv = Random.new().read(AES.block_size)
-  name1 = raw_input("Enter first name client: ")
+  name1 = input("Enter first name client: ")
   c1 = Client1(name1, iv, key2)
   c1.file = "trimite mesaj A catre B"
 
-  name2 =  raw_input("Enter second name client: ")
+  name2 =  input("Enter second name client: ")
   c2 = Client2(name2, iv, key2)
 
-  name_manager =raw_input("Enter name manager: ")
+  name_manager =input("Enter name manager: ")
   m = Manager(name_manager, iv, key2)
 
   conv = 0
